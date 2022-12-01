@@ -24,6 +24,16 @@
             <td>
               <%= @book.body %>
             </td>
+            <td>
+            <% if @book.favorited_by?(current_user) %>
+              <%= link_to book_favorites_path(@book), method: :delete do %>
+              ♥<%= @book.favorites.count %> いいね
+              <% end %>
+            <% else %>
+              <%= link_to book_favorites_path(@book), method: :post do %>
+               ♡<%= @book.favorites.count %> いいね
+              <% end %>
+            <% end %></td>
             <% if @book.user == current_user %>
             <td>コメント件数：<%= @book.book_comments.count %></td>
             <td><%= link_to "Edit", edit_book_path, class:"btn btn-sm btn-success" %></td>
@@ -50,6 +60,9 @@
             <td><%= book_comment.user_id %></td>
             <td><%= book_comment.comment %></td>
             <td><%= book_comment.created_at.strftime('%Y/%m/%d') %></td>
+            <% if book_comment.user == current_user %>
+            <td> <%= link_to "destroy", book_book_comment_path(book_comment.book_id, book_comment), method: :delete %></td>
+            <% end %>
           </tr>
           <% end %>
         </tbody>

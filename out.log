@@ -1,4 +1,14 @@
 
+BookCommentモデルのテスト
+  バリデーションのテスト
+    commentカラム
+      空欄でないこと (FAILED - 1)
+  アソシエーションのテスト
+    Bookモデルとの関係
+      N:1となっている (FAILED - 2)
+    Userモデルとの関係
+      N:1となっている
+
 Bookモデルのテスト
   バリデーションのテスト
     titleカラム
@@ -8,6 +18,15 @@ Bookモデルのテスト
       200文字以下であること: 200文字は〇
       200文字以下であること: 201文字は×
   アソシエーションのテスト
+    Userモデルとの関係
+      N:1となっている
+
+Favoriteモデルのテスト
+  バリデーションのテスト
+    ユーザーは一つの投稿に一つしかいいねできない (FAILED - 3)
+  アソシエーションのテスト
+    Bookモデルとの関係
+      N:1となっている
     Userモデルとの関係
       N:1となっている
 
@@ -31,22 +50,21 @@ Userモデルのテスト
   トップ画面のテスト
     表示内容の確認
       URLが正しい
-      Log inリンクが表示される: 青色のボタンの表示が「Log in」である
+      Log inリンクが表示される: 左上から5番目のリンクが「Log in」である
       Log inリンクの内容が正しい
-      Sign upリンクが表示される: 緑色のボタンの表示が「Sign up」である
+      Sign upリンクが表示される: 左上から6番目のリンクが「Sign up」である
       Sign upリンクの内容が正しい
   アバウト画面のテスト
     表示内容の確認
       URLが正しい
   ヘッダーのテスト: ログインしていない場合
     表示内容の確認
-      Bookersリンクが表示される: 左上から1番目のリンクが「Bookers」である
-      Homeリンクが表示される: 左上から2番目のリンクが「Home」である
-      Aboutリンクが表示される: 左上から3番目のリンクが「About」である
-      Sign upリンクが表示される: 左上から4番目のリンクが「Sign up」である
-      Log inリンクが表示される: 左上から5番目のリンクが「Log in」である
+      タイトルが表示される
+      Homeリンクが表示される: 左上から1番目のリンクが「Home」である
+      Aboutリンクが表示される: 左上から2番目のリンクが「About」である
+      Sign upリンクが表示される: 左上から3番目のリンクが「Sign up」である
+      Log inリンクが表示される: 左上から4番目のリンクが「Log in」である
     リンクの内容を確認
-      Bookersを押すと、トップ画面に遷移する
       Homeを押すと、トップ画面に遷移する
       Aboutを押すと、アバウト画面に遷移する
       Sign upを押すと、新規登録画面に遷移する
@@ -77,11 +95,11 @@ Userモデルのテスト
       ログインに失敗し、ログイン画面にリダイレクトされる
   ヘッダーのテスト: ログインしている場合
     ヘッダーの表示を確認
-      Bookersリンクが表示される: 左上から1番目のリンクが「Bookers」である
-      Homeリンクが表示される: 左上から2番目のリンクが「Home」である
-      Usersリンクが表示される: 左上から3番目のリンクが「Users」である
-      Booksリンクが表示される: 左上から4番目のリンクが「Books」である
-      Log outリンクが表示される: 左上から5番目のリンクが「Log out」である
+      タイトルが表示される
+      Homeリンクが表示される: 左上から1番目のリンクが「Home」である
+      Usersリンクが表示される: 左上から2番目のリンクが「Users」である
+      Booksリンクが表示される: 左上から3番目のリンクが「Books」である
+      Log outリンクが表示される: 左上から4番目のリンクが「Log out」である
   ユーザログアウトのテスト
     ログアウト機能のテスト
       正しくログアウトできている: ログアウト後のリダイレクト先においてAbout画面へのリンクが存在する
@@ -105,8 +123,8 @@ Userモデルのテスト
       「New book」と表示される
       titleフォームが表示される
       titleフォームに値が入っていない
-      bodyフォームが表示される
-      bodyフォームに値が入っていない
+      opinionフォームが表示される
+      opinionフォームに値が入っていない
       Create Bookボタンが表示される
     投稿成功のテスト
       自分の新しい投稿が正しく保存される
@@ -117,7 +135,7 @@ Userモデルのテスト
       「Book detail」と表示される
       ユーザ画像・名前のリンク先が正しい
       投稿のtitleが表示される
-      投稿のbodyが表示される
+      投稿のopinionが表示される
       投稿の編集リンクが表示される
       投稿の削除リンクが表示される
     サイドバーの確認
@@ -126,15 +144,14 @@ Userモデルのテスト
       「New book」と表示される
       titleフォームが表示される
       titleフォームに値が入っていない
-      bodyフォームが表示される
-      bodyフォームに値が入っていない
+      opinionフォームが表示される
+      opinionフォームに値が入っていない
       Create Bookボタンが表示される
     投稿成功のテスト
       自分の新しい投稿が正しく保存される
     編集リンクのテスト
       編集画面に遷移する
     削除リンクのテスト
-      application.html.erbにjavascript_pack_tagを含んでいる
       正しく削除される
       リダイレクト先が、投稿一覧画面になっている
   自分の投稿編集画面のテスト
@@ -142,7 +159,7 @@ Userモデルのテスト
       URLが正しい
       「Editing Book」と表示される
       title編集フォームが表示される
-      body編集フォームが表示される
+      opinion編集フォームが表示される
       Update Bookボタンが表示される
       Showリンクが表示される
       Backリンクが表示される
@@ -162,15 +179,15 @@ Userモデルのテスト
       「New book」と表示される
       titleフォームが表示される
       titleフォームに値が入っていない
-      bodyフォームが表示される
-      bodyフォームに値が入っていない
+      opinionフォームが表示される
+      opinionフォームに値が入っていない
       Create Bookボタンが表示される
   自分のユーザ詳細画面のテスト
     表示の確認
       URLが正しい
       投稿一覧のユーザ画像のリンク先が正しい
       投稿一覧に自分の投稿のtitleが表示され、リンクが正しい
-      投稿一覧に自分の投稿のbodyが表示される
+      投稿一覧に自分の投稿のopinionが表示される
       他人の投稿は表示されない
     サイドバーの確認
       自分の名前と紹介文が表示される
@@ -178,8 +195,8 @@ Userモデルのテスト
       「New book」と表示される
       titleフォームが表示される
       titleフォームに値が入っていない
-      bodyフォームが表示される
-      bodyフォームに値が入っていない
+      opinionフォームが表示される
+      opinionフォームに値が入っていない
       Create Bookボタンが表示される
   自分のユーザ情報編集画面のテスト
     表示の確認
@@ -283,6 +300,827 @@ Userモデルのテスト
       投稿一覧画面でレンチアイコンが表示される
       投稿詳細画面でレンチアイコンが表示される
 
-Finished in 28.19 seconds (files took 1.09 seconds to load)
-199 examples, 0 failures
+[STEP4] いいねとコメントのテスト
+  投稿一覧画面のテスト[課題4追加分]
+    表示の確認
+      いいねボタンのハートアイコンが表示される (FAILED - 4)
+      いいねボタンが表示される (FAILED - 5)
+      コメント数が表示される (FAILED - 6)
+    いいね作成機能のテスト
+      自分のいいねが正しく保存される (FAILED - 7)
+      リダイレクト先が投稿一覧画面になっている (FAILED - 8)
+      リダイレクト先でいいね数が正しく更新されている (FAILED - 9)
+    いいね削除機能のテスト
+      自分のいいねが正しく削除される (FAILED - 10)
+      リダイレクト先が投稿一覧画面になっている (FAILED - 11)
+      リダイレクト先でいいね数が正しく更新されている (FAILED - 12)
+  自分の投稿詳細画面のテスト[課題4追加分]
+    表示の確認
+      いいねボタンのハートアイコンが表示される (FAILED - 13)
+      いいねボタンが表示される (FAILED - 14)
+      コメント数が表示される (FAILED - 15)
+      コメント一覧でコメント投稿者の画像が表示される: fallbackの画像がサイドバーの1つ＋Book detail直下の1つ＋コメント一覧(2人)の2つの計4つ存在する (FAILED - 16)
+      コメント一覧でコメント投稿者の名前が表示される (FAILED - 17)
+      コメント一覧でコメントの内容が表示される (FAILED - 18)
+      自分が投稿したコメントの削除ボタンが表示される (FAILED - 19)
+      他人が投稿したコメントの削除ボタンは表示されない (FAILED - 20)
+      コメント投稿フォームが表示される (FAILED - 21)
+      送信ボタンが表示される (FAILED - 22)
+    いいね機能のテスト
+      自分のいいねが正しく保存される (FAILED - 23)
+      リダイレクト先が、いいねをした投稿詳細画面になっている (FAILED - 24)
+      リダイレクト先でいいね数が正しく更新されている (FAILED - 25)
+    コメント追加機能のテスト
+      自分のコメントが正しく保存される (FAILED - 26)
+      リダイレクト先が、コメントをした投稿詳細画面になっている (FAILED - 27)
+      リダイレクト先でコメント数が正しく更新されている (FAILED - 28)
+      リダイレクト先で新しいコメントが表示されている (FAILED - 29)
+    コメント削除機能のテスト
+      自分のコメントが正しく削除される (FAILED - 30)
+      リダイレクト先が、コメントをしていた投稿詳細画面になっている (FAILED - 31)
+      リダイレクト先でコメント数が正しく更新されている (FAILED - 32)
+      リダイレクト先で削除したコメントは表示されない (FAILED - 33)
+  自分のユーザ詳細画面のテスト[課題4追加分]
+    表示の確認
+      いいねボタンのハートアイコンが表示される (FAILED - 34)
+      いいねボタンが表示される (FAILED - 35)
+      コメント数が表示される (FAILED - 36)
+    いいね作成機能のテスト
+      自分のいいねが正しく保存される (FAILED - 37)
+      リダイレクト先が自分のユーザ詳細画面になっている (FAILED - 38)
+      リダイレクト先でいいね数が正しく更新されている (FAILED - 39)
+
+Failures:
+
+  1) BookCommentモデルのテスト バリデーションのテスト commentカラム 空欄でないこと
+     Failure/Error: let!(:book_comment) { build(:book_comment, book: book, user: user) }
+
+     NoMethodError:
+       undefined method `book=' for #<BookComment id: nil, comment: "a4lkj3tf6n", user_id: nil, book_id: nil, created_at: nil, updated_at: nil>
+       Did you mean?  book_id=
+     # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/attribute_assigner.rb:16:in `public_send'
+     # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/attribute_assigner.rb:16:in `block (2 levels) in object'
+     # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/attribute_assigner.rb:15:in `each'
+     # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/attribute_assigner.rb:15:in `block in object'
+     # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/attribute_assigner.rb:14:in `object'
+     # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/evaluation.rb:13:in `object'
+     # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/strategy/build.rb:9:in `result'
+     # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/factory.rb:43:in `run'
+     # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/factory_runner.rb:29:in `block in run'
+     # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/factory_runner.rb:28:in `run'
+     # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/strategy_syntax_method_registrar.rb:28:in `block in define_singular_strategy_method'
+     # ./spec/models/book_comment_spec.rb:9:in `block (3 levels) in <top (required)>'
+
+  2) BookCommentモデルのテスト アソシエーションのテスト Bookモデルとの関係 N:1となっている
+     Failure/Error: expect(BookComment.reflect_on_association(:book).macro).to eq :belongs_to
+
+     NoMethodError:
+       undefined method `macro' for nil:NilClass
+
+               expect(BookComment.reflect_on_association(:book).macro).to eq :belongs_to
+                                                               ^^^^^^
+     # ./spec/models/book_comment_spec.rb:22:in `block (4 levels) in <top (required)>'
+
+  3) Favoriteモデルのテスト バリデーションのテスト ユーザーは一つの投稿に一つしかいいねできない
+     Failure/Error: is_expected.to eq false
+
+       expected: false
+            got: true
+
+       (compared using ==)
+
+       Diff:
+       @@ -1 +1 @@
+       -false
+       +true
+     # ./spec/models/favorite_spec.rb:13:in `block (3 levels) in <main>'
+
+  4) [STEP4] いいねとコメントのテスト 投稿一覧画面のテスト[課題4追加分] 表示の確認 いいねボタンのハートアイコンが表示される
+     Failure/Error: let!(:user_book_comment) { create(:book_comment, book: book, user: user) }
+
+     NoMethodError:
+       undefined method `book=' for #<BookComment id: nil, comment: "sb6cnqji18", user_id: nil, book_id: nil, created_at: nil, updated_at: nil>
+       Did you mean?  book_id=
+     # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/attribute_assigner.rb:16:in `public_send'
+     # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/attribute_assigner.rb:16:in `block (2 levels) in object'
+     # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/attribute_assigner.rb:15:in `each'
+     # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/attribute_assigner.rb:15:in `block in object'
+     # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/attribute_assigner.rb:14:in `object'
+     # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/evaluation.rb:13:in `object'
+     # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/strategy/create.rb:9:in `result'
+     # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/factory.rb:43:in `run'
+     # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/factory_runner.rb:29:in `block in run'
+     # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/factory_runner.rb:28:in `run'
+     # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/strategy_syntax_method_registrar.rb:28:in `block in define_singular_strategy_method'
+     # ./spec/system/04_favorite_comment_spec.rb:8:in `block (2 levels) in <main>'
+
+  5) [STEP4] いいねとコメントのテスト 投稿一覧画面のテスト[課題4追加分] 表示の確認 いいねボタンが表示される
+     Failure/Error: let!(:user_book_comment) { create(:book_comment, book: book, user: user) }
+
+     NoMethodError:
+       undefined method `book=' for #<BookComment id: nil, comment: "b1hefuxh6h", user_id: nil, book_id: nil, created_at: nil, updated_at: nil>
+       Did you mean?  book_id=
+     # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/attribute_assigner.rb:16:in `public_send'
+     # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/attribute_assigner.rb:16:in `block (2 levels) in object'
+     # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/attribute_assigner.rb:15:in `each'
+     # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/attribute_assigner.rb:15:in `block in object'
+     # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/attribute_assigner.rb:14:in `object'
+     # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/evaluation.rb:13:in `object'
+     # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/strategy/create.rb:9:in `result'
+     # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/factory.rb:43:in `run'
+     # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/factory_runner.rb:29:in `block in run'
+     # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/factory_runner.rb:28:in `run'
+     # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/strategy_syntax_method_registrar.rb:28:in `block in define_singular_strategy_method'
+     # ./spec/system/04_favorite_comment_spec.rb:8:in `block (2 levels) in <main>'
+
+  6) [STEP4] いいねとコメントのテスト 投稿一覧画面のテスト[課題4追加分] 表示の確認 コメント数が表示される
+     Failure/Error: let!(:user_book_comment) { create(:book_comment, book: book, user: user) }
+
+     NoMethodError:
+       undefined method `book=' for #<BookComment id: nil, comment: "v6ipcvk9yd", user_id: nil, book_id: nil, created_at: nil, updated_at: nil>
+       Did you mean?  book_id=
+     # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/attribute_assigner.rb:16:in `public_send'
+     # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/attribute_assigner.rb:16:in `block (2 levels) in object'
+     # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/attribute_assigner.rb:15:in `each'
+     # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/attribute_assigner.rb:15:in `block in object'
+     # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/attribute_assigner.rb:14:in `object'
+     # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/evaluation.rb:13:in `object'
+     # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/strategy/create.rb:9:in `result'
+     # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/factory.rb:43:in `run'
+     # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/factory_runner.rb:29:in `block in run'
+     # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/factory_runner.rb:28:in `run'
+     # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/strategy_syntax_method_registrar.rb:28:in `block in define_singular_strategy_method'
+     # ./spec/system/04_favorite_comment_spec.rb:8:in `block (2 levels) in <main>'
+
+  7) [STEP4] いいねとコメントのテスト 投稿一覧画面のテスト[課題4追加分] いいね作成機能のテスト 自分のいいねが正しく保存される
+     Failure/Error: let!(:user_book_comment) { create(:book_comment, book: book, user: user) }
+
+     NoMethodError:
+       undefined method `book=' for #<BookComment id: nil, comment: "fcbqbibkn6", user_id: nil, book_id: nil, created_at: nil, updated_at: nil>
+       Did you mean?  book_id=
+     # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/attribute_assigner.rb:16:in `public_send'
+     # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/attribute_assigner.rb:16:in `block (2 levels) in object'
+     # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/attribute_assigner.rb:15:in `each'
+     # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/attribute_assigner.rb:15:in `block in object'
+     # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/attribute_assigner.rb:14:in `object'
+     # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/evaluation.rb:13:in `object'
+     # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/strategy/create.rb:9:in `result'
+     # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/factory.rb:43:in `run'
+     # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/factory_runner.rb:29:in `block in run'
+     # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/factory_runner.rb:28:in `run'
+     # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/strategy_syntax_method_registrar.rb:28:in `block in define_singular_strategy_method'
+     # ./spec/system/04_favorite_comment_spec.rb:8:in `block (2 levels) in <main>'
+
+  8) [STEP4] いいねとコメントのテスト 投稿一覧画面のテスト[課題4追加分] いいね作成機能のテスト リダイレクト先が投稿一覧画面になっている
+     Failure/Error: let!(:user_book_comment) { create(:book_comment, book: book, user: user) }
+
+     NoMethodError:
+       undefined method `book=' for #<BookComment id: nil, comment: "ehhajv0m12", user_id: nil, book_id: nil, created_at: nil, updated_at: nil>
+       Did you mean?  book_id=
+     # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/attribute_assigner.rb:16:in `public_send'
+     # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/attribute_assigner.rb:16:in `block (2 levels) in object'
+     # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/attribute_assigner.rb:15:in `each'
+     # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/attribute_assigner.rb:15:in `block in object'
+     # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/attribute_assigner.rb:14:in `object'
+     # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/evaluation.rb:13:in `object'
+     # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/strategy/create.rb:9:in `result'
+     # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/factory.rb:43:in `run'
+     # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/factory_runner.rb:29:in `block in run'
+     # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/factory_runner.rb:28:in `run'
+     # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/strategy_syntax_method_registrar.rb:28:in `block in define_singular_strategy_method'
+     # ./spec/system/04_favorite_comment_spec.rb:8:in `block (2 levels) in <main>'
+
+  9) [STEP4] いいねとコメントのテスト 投稿一覧画面のテスト[課題4追加分] いいね作成機能のテスト リダイレクト先でいいね数が正しく更新されている
+     Failure/Error: let!(:user_book_comment) { create(:book_comment, book: book, user: user) }
+
+     NoMethodError:
+       undefined method `book=' for #<BookComment id: nil, comment: "g90zrgo8uc", user_id: nil, book_id: nil, created_at: nil, updated_at: nil>
+       Did you mean?  book_id=
+     # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/attribute_assigner.rb:16:in `public_send'
+     # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/attribute_assigner.rb:16:in `block (2 levels) in object'
+     # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/attribute_assigner.rb:15:in `each'
+     # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/attribute_assigner.rb:15:in `block in object'
+     # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/attribute_assigner.rb:14:in `object'
+     # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/evaluation.rb:13:in `object'
+     # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/strategy/create.rb:9:in `result'
+     # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/factory.rb:43:in `run'
+     # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/factory_runner.rb:29:in `block in run'
+     # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/factory_runner.rb:28:in `run'
+     # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/strategy_syntax_method_registrar.rb:28:in `block in define_singular_strategy_method'
+     # ./spec/system/04_favorite_comment_spec.rb:8:in `block (2 levels) in <main>'
+
+  10) [STEP4] いいねとコメントのテスト 投稿一覧画面のテスト[課題4追加分] いいね削除機能のテスト 自分のいいねが正しく削除される
+      Failure/Error: let!(:user_book_comment) { create(:book_comment, book: book, user: user) }
+
+      NoMethodError:
+        undefined method `book=' for #<BookComment id: nil, comment: "mkeo7i7ely", user_id: nil, book_id: nil, created_at: nil, updated_at: nil>
+        Did you mean?  book_id=
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/attribute_assigner.rb:16:in `public_send'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/attribute_assigner.rb:16:in `block (2 levels) in object'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/attribute_assigner.rb:15:in `each'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/attribute_assigner.rb:15:in `block in object'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/attribute_assigner.rb:14:in `object'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/evaluation.rb:13:in `object'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/strategy/create.rb:9:in `result'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/factory.rb:43:in `run'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/factory_runner.rb:29:in `block in run'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/factory_runner.rb:28:in `run'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/strategy_syntax_method_registrar.rb:28:in `block in define_singular_strategy_method'
+      # ./spec/system/04_favorite_comment_spec.rb:8:in `block (2 levels) in <main>'
+
+  11) [STEP4] いいねとコメントのテスト 投稿一覧画面のテスト[課題4追加分] いいね削除機能のテスト リダイレクト先が投稿一覧画面になっている
+      Failure/Error: let!(:user_book_comment) { create(:book_comment, book: book, user: user) }
+
+      NoMethodError:
+        undefined method `book=' for #<BookComment id: nil, comment: "epcd9hs4ka", user_id: nil, book_id: nil, created_at: nil, updated_at: nil>
+        Did you mean?  book_id=
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/attribute_assigner.rb:16:in `public_send'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/attribute_assigner.rb:16:in `block (2 levels) in object'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/attribute_assigner.rb:15:in `each'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/attribute_assigner.rb:15:in `block in object'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/attribute_assigner.rb:14:in `object'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/evaluation.rb:13:in `object'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/strategy/create.rb:9:in `result'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/factory.rb:43:in `run'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/factory_runner.rb:29:in `block in run'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/factory_runner.rb:28:in `run'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/strategy_syntax_method_registrar.rb:28:in `block in define_singular_strategy_method'
+      # ./spec/system/04_favorite_comment_spec.rb:8:in `block (2 levels) in <main>'
+
+  12) [STEP4] いいねとコメントのテスト 投稿一覧画面のテスト[課題4追加分] いいね削除機能のテスト リダイレクト先でいいね数が正しく更新されている
+      Failure/Error: let!(:user_book_comment) { create(:book_comment, book: book, user: user) }
+
+      NoMethodError:
+        undefined method `book=' for #<BookComment id: nil, comment: "kbmbwgown0", user_id: nil, book_id: nil, created_at: nil, updated_at: nil>
+        Did you mean?  book_id=
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/attribute_assigner.rb:16:in `public_send'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/attribute_assigner.rb:16:in `block (2 levels) in object'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/attribute_assigner.rb:15:in `each'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/attribute_assigner.rb:15:in `block in object'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/attribute_assigner.rb:14:in `object'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/evaluation.rb:13:in `object'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/strategy/create.rb:9:in `result'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/factory.rb:43:in `run'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/factory_runner.rb:29:in `block in run'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/factory_runner.rb:28:in `run'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/strategy_syntax_method_registrar.rb:28:in `block in define_singular_strategy_method'
+      # ./spec/system/04_favorite_comment_spec.rb:8:in `block (2 levels) in <main>'
+
+  13) [STEP4] いいねとコメントのテスト 自分の投稿詳細画面のテスト[課題4追加分] 表示の確認 いいねボタンのハートアイコンが表示される
+      Failure/Error: let!(:user_book_comment) { create(:book_comment, book: book, user: user) }
+
+      NoMethodError:
+        undefined method `book=' for #<BookComment id: nil, comment: "kpn0565mpa", user_id: nil, book_id: nil, created_at: nil, updated_at: nil>
+        Did you mean?  book_id=
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/attribute_assigner.rb:16:in `public_send'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/attribute_assigner.rb:16:in `block (2 levels) in object'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/attribute_assigner.rb:15:in `each'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/attribute_assigner.rb:15:in `block in object'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/attribute_assigner.rb:14:in `object'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/evaluation.rb:13:in `object'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/strategy/create.rb:9:in `result'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/factory.rb:43:in `run'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/factory_runner.rb:29:in `block in run'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/factory_runner.rb:28:in `run'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/strategy_syntax_method_registrar.rb:28:in `block in define_singular_strategy_method'
+      # ./spec/system/04_favorite_comment_spec.rb:8:in `block (2 levels) in <main>'
+
+  14) [STEP4] いいねとコメントのテスト 自分の投稿詳細画面のテスト[課題4追加分] 表示の確認 いいねボタンが表示される
+      Failure/Error: let!(:user_book_comment) { create(:book_comment, book: book, user: user) }
+
+      NoMethodError:
+        undefined method `book=' for #<BookComment id: nil, comment: "v8bptau6ve", user_id: nil, book_id: nil, created_at: nil, updated_at: nil>
+        Did you mean?  book_id=
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/attribute_assigner.rb:16:in `public_send'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/attribute_assigner.rb:16:in `block (2 levels) in object'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/attribute_assigner.rb:15:in `each'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/attribute_assigner.rb:15:in `block in object'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/attribute_assigner.rb:14:in `object'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/evaluation.rb:13:in `object'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/strategy/create.rb:9:in `result'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/factory.rb:43:in `run'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/factory_runner.rb:29:in `block in run'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/factory_runner.rb:28:in `run'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/strategy_syntax_method_registrar.rb:28:in `block in define_singular_strategy_method'
+      # ./spec/system/04_favorite_comment_spec.rb:8:in `block (2 levels) in <main>'
+
+  15) [STEP4] いいねとコメントのテスト 自分の投稿詳細画面のテスト[課題4追加分] 表示の確認 コメント数が表示される
+      Failure/Error: let!(:user_book_comment) { create(:book_comment, book: book, user: user) }
+
+      NoMethodError:
+        undefined method `book=' for #<BookComment id: nil, comment: "7ore9obe37", user_id: nil, book_id: nil, created_at: nil, updated_at: nil>
+        Did you mean?  book_id=
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/attribute_assigner.rb:16:in `public_send'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/attribute_assigner.rb:16:in `block (2 levels) in object'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/attribute_assigner.rb:15:in `each'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/attribute_assigner.rb:15:in `block in object'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/attribute_assigner.rb:14:in `object'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/evaluation.rb:13:in `object'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/strategy/create.rb:9:in `result'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/factory.rb:43:in `run'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/factory_runner.rb:29:in `block in run'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/factory_runner.rb:28:in `run'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/strategy_syntax_method_registrar.rb:28:in `block in define_singular_strategy_method'
+      # ./spec/system/04_favorite_comment_spec.rb:8:in `block (2 levels) in <main>'
+
+  16) [STEP4] いいねとコメントのテスト 自分の投稿詳細画面のテスト[課題4追加分] 表示の確認 コメント一覧でコメント投稿者の画像が表示される: fallbackの画像がサイドバーの1つ＋Book detail直下の1つ＋コメント一覧(2人)の2つの計4つ存在する
+      Failure/Error: let!(:user_book_comment) { create(:book_comment, book: book, user: user) }
+
+      NoMethodError:
+        undefined method `book=' for #<BookComment id: nil, comment: "v0z63hqchm", user_id: nil, book_id: nil, created_at: nil, updated_at: nil>
+        Did you mean?  book_id=
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/attribute_assigner.rb:16:in `public_send'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/attribute_assigner.rb:16:in `block (2 levels) in object'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/attribute_assigner.rb:15:in `each'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/attribute_assigner.rb:15:in `block in object'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/attribute_assigner.rb:14:in `object'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/evaluation.rb:13:in `object'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/strategy/create.rb:9:in `result'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/factory.rb:43:in `run'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/factory_runner.rb:29:in `block in run'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/factory_runner.rb:28:in `run'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/strategy_syntax_method_registrar.rb:28:in `block in define_singular_strategy_method'
+      # ./spec/system/04_favorite_comment_spec.rb:8:in `block (2 levels) in <main>'
+
+  17) [STEP4] いいねとコメントのテスト 自分の投稿詳細画面のテスト[課題4追加分] 表示の確認 コメント一覧でコメント投稿者の名前が表示される
+      Failure/Error: let!(:user_book_comment) { create(:book_comment, book: book, user: user) }
+
+      NoMethodError:
+        undefined method `book=' for #<BookComment id: nil, comment: "h4e68r3prj", user_id: nil, book_id: nil, created_at: nil, updated_at: nil>
+        Did you mean?  book_id=
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/attribute_assigner.rb:16:in `public_send'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/attribute_assigner.rb:16:in `block (2 levels) in object'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/attribute_assigner.rb:15:in `each'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/attribute_assigner.rb:15:in `block in object'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/attribute_assigner.rb:14:in `object'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/evaluation.rb:13:in `object'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/strategy/create.rb:9:in `result'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/factory.rb:43:in `run'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/factory_runner.rb:29:in `block in run'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/factory_runner.rb:28:in `run'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/strategy_syntax_method_registrar.rb:28:in `block in define_singular_strategy_method'
+      # ./spec/system/04_favorite_comment_spec.rb:8:in `block (2 levels) in <main>'
+
+  18) [STEP4] いいねとコメントのテスト 自分の投稿詳細画面のテスト[課題4追加分] 表示の確認 コメント一覧でコメントの内容が表示される
+      Failure/Error: let!(:user_book_comment) { create(:book_comment, book: book, user: user) }
+
+      NoMethodError:
+        undefined method `book=' for #<BookComment id: nil, comment: "nngfbfjog8", user_id: nil, book_id: nil, created_at: nil, updated_at: nil>
+        Did you mean?  book_id=
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/attribute_assigner.rb:16:in `public_send'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/attribute_assigner.rb:16:in `block (2 levels) in object'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/attribute_assigner.rb:15:in `each'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/attribute_assigner.rb:15:in `block in object'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/attribute_assigner.rb:14:in `object'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/evaluation.rb:13:in `object'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/strategy/create.rb:9:in `result'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/factory.rb:43:in `run'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/factory_runner.rb:29:in `block in run'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/factory_runner.rb:28:in `run'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/strategy_syntax_method_registrar.rb:28:in `block in define_singular_strategy_method'
+      # ./spec/system/04_favorite_comment_spec.rb:8:in `block (2 levels) in <main>'
+
+  19) [STEP4] いいねとコメントのテスト 自分の投稿詳細画面のテスト[課題4追加分] 表示の確認 自分が投稿したコメントの削除ボタンが表示される
+      Failure/Error: let!(:user_book_comment) { create(:book_comment, book: book, user: user) }
+
+      NoMethodError:
+        undefined method `book=' for #<BookComment id: nil, comment: "0ullw3nt7n", user_id: nil, book_id: nil, created_at: nil, updated_at: nil>
+        Did you mean?  book_id=
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/attribute_assigner.rb:16:in `public_send'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/attribute_assigner.rb:16:in `block (2 levels) in object'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/attribute_assigner.rb:15:in `each'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/attribute_assigner.rb:15:in `block in object'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/attribute_assigner.rb:14:in `object'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/evaluation.rb:13:in `object'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/strategy/create.rb:9:in `result'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/factory.rb:43:in `run'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/factory_runner.rb:29:in `block in run'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/factory_runner.rb:28:in `run'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/strategy_syntax_method_registrar.rb:28:in `block in define_singular_strategy_method'
+      # ./spec/system/04_favorite_comment_spec.rb:8:in `block (2 levels) in <main>'
+
+  20) [STEP4] いいねとコメントのテスト 自分の投稿詳細画面のテスト[課題4追加分] 表示の確認 他人が投稿したコメントの削除ボタンは表示されない
+      Failure/Error: let!(:user_book_comment) { create(:book_comment, book: book, user: user) }
+
+      NoMethodError:
+        undefined method `book=' for #<BookComment id: nil, comment: "8n62wqudlx", user_id: nil, book_id: nil, created_at: nil, updated_at: nil>
+        Did you mean?  book_id=
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/attribute_assigner.rb:16:in `public_send'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/attribute_assigner.rb:16:in `block (2 levels) in object'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/attribute_assigner.rb:15:in `each'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/attribute_assigner.rb:15:in `block in object'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/attribute_assigner.rb:14:in `object'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/evaluation.rb:13:in `object'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/strategy/create.rb:9:in `result'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/factory.rb:43:in `run'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/factory_runner.rb:29:in `block in run'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/factory_runner.rb:28:in `run'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/strategy_syntax_method_registrar.rb:28:in `block in define_singular_strategy_method'
+      # ./spec/system/04_favorite_comment_spec.rb:8:in `block (2 levels) in <main>'
+
+  21) [STEP4] いいねとコメントのテスト 自分の投稿詳細画面のテスト[課題4追加分] 表示の確認 コメント投稿フォームが表示される
+      Failure/Error: let!(:user_book_comment) { create(:book_comment, book: book, user: user) }
+
+      NoMethodError:
+        undefined method `book=' for #<BookComment id: nil, comment: "59jrwe5r7p", user_id: nil, book_id: nil, created_at: nil, updated_at: nil>
+        Did you mean?  book_id=
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/attribute_assigner.rb:16:in `public_send'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/attribute_assigner.rb:16:in `block (2 levels) in object'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/attribute_assigner.rb:15:in `each'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/attribute_assigner.rb:15:in `block in object'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/attribute_assigner.rb:14:in `object'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/evaluation.rb:13:in `object'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/strategy/create.rb:9:in `result'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/factory.rb:43:in `run'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/factory_runner.rb:29:in `block in run'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/factory_runner.rb:28:in `run'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/strategy_syntax_method_registrar.rb:28:in `block in define_singular_strategy_method'
+      # ./spec/system/04_favorite_comment_spec.rb:8:in `block (2 levels) in <main>'
+
+  22) [STEP4] いいねとコメントのテスト 自分の投稿詳細画面のテスト[課題4追加分] 表示の確認 送信ボタンが表示される
+      Failure/Error: let!(:user_book_comment) { create(:book_comment, book: book, user: user) }
+
+      NoMethodError:
+        undefined method `book=' for #<BookComment id: nil, comment: "u98n9stip1", user_id: nil, book_id: nil, created_at: nil, updated_at: nil>
+        Did you mean?  book_id=
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/attribute_assigner.rb:16:in `public_send'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/attribute_assigner.rb:16:in `block (2 levels) in object'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/attribute_assigner.rb:15:in `each'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/attribute_assigner.rb:15:in `block in object'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/attribute_assigner.rb:14:in `object'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/evaluation.rb:13:in `object'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/strategy/create.rb:9:in `result'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/factory.rb:43:in `run'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/factory_runner.rb:29:in `block in run'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/factory_runner.rb:28:in `run'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/strategy_syntax_method_registrar.rb:28:in `block in define_singular_strategy_method'
+      # ./spec/system/04_favorite_comment_spec.rb:8:in `block (2 levels) in <main>'
+
+  23) [STEP4] いいねとコメントのテスト 自分の投稿詳細画面のテスト[課題4追加分] いいね機能のテスト 自分のいいねが正しく保存される
+      Failure/Error: let!(:user_book_comment) { create(:book_comment, book: book, user: user) }
+
+      NoMethodError:
+        undefined method `book=' for #<BookComment id: nil, comment: "bknaybapfa", user_id: nil, book_id: nil, created_at: nil, updated_at: nil>
+        Did you mean?  book_id=
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/attribute_assigner.rb:16:in `public_send'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/attribute_assigner.rb:16:in `block (2 levels) in object'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/attribute_assigner.rb:15:in `each'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/attribute_assigner.rb:15:in `block in object'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/attribute_assigner.rb:14:in `object'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/evaluation.rb:13:in `object'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/strategy/create.rb:9:in `result'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/factory.rb:43:in `run'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/factory_runner.rb:29:in `block in run'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/factory_runner.rb:28:in `run'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/strategy_syntax_method_registrar.rb:28:in `block in define_singular_strategy_method'
+      # ./spec/system/04_favorite_comment_spec.rb:8:in `block (2 levels) in <main>'
+
+  24) [STEP4] いいねとコメントのテスト 自分の投稿詳細画面のテスト[課題4追加分] いいね機能のテスト リダイレクト先が、いいねをした投稿詳細画面になっている
+      Failure/Error: let!(:user_book_comment) { create(:book_comment, book: book, user: user) }
+
+      NoMethodError:
+        undefined method `book=' for #<BookComment id: nil, comment: "b649ppaj6x", user_id: nil, book_id: nil, created_at: nil, updated_at: nil>
+        Did you mean?  book_id=
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/attribute_assigner.rb:16:in `public_send'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/attribute_assigner.rb:16:in `block (2 levels) in object'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/attribute_assigner.rb:15:in `each'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/attribute_assigner.rb:15:in `block in object'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/attribute_assigner.rb:14:in `object'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/evaluation.rb:13:in `object'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/strategy/create.rb:9:in `result'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/factory.rb:43:in `run'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/factory_runner.rb:29:in `block in run'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/factory_runner.rb:28:in `run'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/strategy_syntax_method_registrar.rb:28:in `block in define_singular_strategy_method'
+      # ./spec/system/04_favorite_comment_spec.rb:8:in `block (2 levels) in <main>'
+
+  25) [STEP4] いいねとコメントのテスト 自分の投稿詳細画面のテスト[課題4追加分] いいね機能のテスト リダイレクト先でいいね数が正しく更新されている
+      Failure/Error: let!(:user_book_comment) { create(:book_comment, book: book, user: user) }
+
+      NoMethodError:
+        undefined method `book=' for #<BookComment id: nil, comment: "7e671civst", user_id: nil, book_id: nil, created_at: nil, updated_at: nil>
+        Did you mean?  book_id=
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/attribute_assigner.rb:16:in `public_send'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/attribute_assigner.rb:16:in `block (2 levels) in object'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/attribute_assigner.rb:15:in `each'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/attribute_assigner.rb:15:in `block in object'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/attribute_assigner.rb:14:in `object'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/evaluation.rb:13:in `object'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/strategy/create.rb:9:in `result'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/factory.rb:43:in `run'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/factory_runner.rb:29:in `block in run'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/factory_runner.rb:28:in `run'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/strategy_syntax_method_registrar.rb:28:in `block in define_singular_strategy_method'
+      # ./spec/system/04_favorite_comment_spec.rb:8:in `block (2 levels) in <main>'
+
+  26) [STEP4] いいねとコメントのテスト 自分の投稿詳細画面のテスト[課題4追加分] コメント追加機能のテスト 自分のコメントが正しく保存される
+      Failure/Error: let!(:user_book_comment) { create(:book_comment, book: book, user: user) }
+
+      NoMethodError:
+        undefined method `book=' for #<BookComment id: nil, comment: "mop1i5zivb", user_id: nil, book_id: nil, created_at: nil, updated_at: nil>
+        Did you mean?  book_id=
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/attribute_assigner.rb:16:in `public_send'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/attribute_assigner.rb:16:in `block (2 levels) in object'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/attribute_assigner.rb:15:in `each'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/attribute_assigner.rb:15:in `block in object'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/attribute_assigner.rb:14:in `object'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/evaluation.rb:13:in `object'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/strategy/create.rb:9:in `result'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/factory.rb:43:in `run'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/factory_runner.rb:29:in `block in run'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/factory_runner.rb:28:in `run'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/strategy_syntax_method_registrar.rb:28:in `block in define_singular_strategy_method'
+      # ./spec/system/04_favorite_comment_spec.rb:8:in `block (2 levels) in <main>'
+
+  27) [STEP4] いいねとコメントのテスト 自分の投稿詳細画面のテスト[課題4追加分] コメント追加機能のテスト リダイレクト先が、コメントをした投稿詳細画面になっている
+      Failure/Error: let!(:user_book_comment) { create(:book_comment, book: book, user: user) }
+
+      NoMethodError:
+        undefined method `book=' for #<BookComment id: nil, comment: "1ktahxdgxq", user_id: nil, book_id: nil, created_at: nil, updated_at: nil>
+        Did you mean?  book_id=
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/attribute_assigner.rb:16:in `public_send'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/attribute_assigner.rb:16:in `block (2 levels) in object'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/attribute_assigner.rb:15:in `each'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/attribute_assigner.rb:15:in `block in object'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/attribute_assigner.rb:14:in `object'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/evaluation.rb:13:in `object'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/strategy/create.rb:9:in `result'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/factory.rb:43:in `run'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/factory_runner.rb:29:in `block in run'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/factory_runner.rb:28:in `run'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/strategy_syntax_method_registrar.rb:28:in `block in define_singular_strategy_method'
+      # ./spec/system/04_favorite_comment_spec.rb:8:in `block (2 levels) in <main>'
+
+  28) [STEP4] いいねとコメントのテスト 自分の投稿詳細画面のテスト[課題4追加分] コメント追加機能のテスト リダイレクト先でコメント数が正しく更新されている
+      Failure/Error: let!(:user_book_comment) { create(:book_comment, book: book, user: user) }
+
+      NoMethodError:
+        undefined method `book=' for #<BookComment id: nil, comment: "tvgncqg427", user_id: nil, book_id: nil, created_at: nil, updated_at: nil>
+        Did you mean?  book_id=
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/attribute_assigner.rb:16:in `public_send'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/attribute_assigner.rb:16:in `block (2 levels) in object'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/attribute_assigner.rb:15:in `each'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/attribute_assigner.rb:15:in `block in object'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/attribute_assigner.rb:14:in `object'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/evaluation.rb:13:in `object'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/strategy/create.rb:9:in `result'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/factory.rb:43:in `run'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/factory_runner.rb:29:in `block in run'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/factory_runner.rb:28:in `run'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/strategy_syntax_method_registrar.rb:28:in `block in define_singular_strategy_method'
+      # ./spec/system/04_favorite_comment_spec.rb:8:in `block (2 levels) in <main>'
+
+  29) [STEP4] いいねとコメントのテスト 自分の投稿詳細画面のテスト[課題4追加分] コメント追加機能のテスト リダイレクト先で新しいコメントが表示されている
+      Failure/Error: let!(:user_book_comment) { create(:book_comment, book: book, user: user) }
+
+      NoMethodError:
+        undefined method `book=' for #<BookComment id: nil, comment: "wciu0zsvmb", user_id: nil, book_id: nil, created_at: nil, updated_at: nil>
+        Did you mean?  book_id=
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/attribute_assigner.rb:16:in `public_send'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/attribute_assigner.rb:16:in `block (2 levels) in object'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/attribute_assigner.rb:15:in `each'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/attribute_assigner.rb:15:in `block in object'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/attribute_assigner.rb:14:in `object'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/evaluation.rb:13:in `object'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/strategy/create.rb:9:in `result'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/factory.rb:43:in `run'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/factory_runner.rb:29:in `block in run'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/factory_runner.rb:28:in `run'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/strategy_syntax_method_registrar.rb:28:in `block in define_singular_strategy_method'
+      # ./spec/system/04_favorite_comment_spec.rb:8:in `block (2 levels) in <main>'
+
+  30) [STEP4] いいねとコメントのテスト 自分の投稿詳細画面のテスト[課題4追加分] コメント削除機能のテスト 自分のコメントが正しく削除される
+      Failure/Error: let!(:user_book_comment) { create(:book_comment, book: book, user: user) }
+
+      NoMethodError:
+        undefined method `book=' for #<BookComment id: nil, comment: "mck9svozk7", user_id: nil, book_id: nil, created_at: nil, updated_at: nil>
+        Did you mean?  book_id=
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/attribute_assigner.rb:16:in `public_send'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/attribute_assigner.rb:16:in `block (2 levels) in object'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/attribute_assigner.rb:15:in `each'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/attribute_assigner.rb:15:in `block in object'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/attribute_assigner.rb:14:in `object'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/evaluation.rb:13:in `object'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/strategy/create.rb:9:in `result'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/factory.rb:43:in `run'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/factory_runner.rb:29:in `block in run'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/factory_runner.rb:28:in `run'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/strategy_syntax_method_registrar.rb:28:in `block in define_singular_strategy_method'
+      # ./spec/system/04_favorite_comment_spec.rb:8:in `block (2 levels) in <main>'
+
+  31) [STEP4] いいねとコメントのテスト 自分の投稿詳細画面のテスト[課題4追加分] コメント削除機能のテスト リダイレクト先が、コメントをしていた投稿詳細画面になっている
+      Failure/Error: let!(:user_book_comment) { create(:book_comment, book: book, user: user) }
+
+      NoMethodError:
+        undefined method `book=' for #<BookComment id: nil, comment: "fhyy8low37", user_id: nil, book_id: nil, created_at: nil, updated_at: nil>
+        Did you mean?  book_id=
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/attribute_assigner.rb:16:in `public_send'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/attribute_assigner.rb:16:in `block (2 levels) in object'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/attribute_assigner.rb:15:in `each'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/attribute_assigner.rb:15:in `block in object'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/attribute_assigner.rb:14:in `object'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/evaluation.rb:13:in `object'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/strategy/create.rb:9:in `result'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/factory.rb:43:in `run'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/factory_runner.rb:29:in `block in run'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/factory_runner.rb:28:in `run'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/strategy_syntax_method_registrar.rb:28:in `block in define_singular_strategy_method'
+      # ./spec/system/04_favorite_comment_spec.rb:8:in `block (2 levels) in <main>'
+
+  32) [STEP4] いいねとコメントのテスト 自分の投稿詳細画面のテスト[課題4追加分] コメント削除機能のテスト リダイレクト先でコメント数が正しく更新されている
+      Failure/Error: let!(:user_book_comment) { create(:book_comment, book: book, user: user) }
+
+      NoMethodError:
+        undefined method `book=' for #<BookComment id: nil, comment: "t6r3mjhjx0", user_id: nil, book_id: nil, created_at: nil, updated_at: nil>
+        Did you mean?  book_id=
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/attribute_assigner.rb:16:in `public_send'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/attribute_assigner.rb:16:in `block (2 levels) in object'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/attribute_assigner.rb:15:in `each'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/attribute_assigner.rb:15:in `block in object'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/attribute_assigner.rb:14:in `object'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/evaluation.rb:13:in `object'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/strategy/create.rb:9:in `result'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/factory.rb:43:in `run'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/factory_runner.rb:29:in `block in run'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/factory_runner.rb:28:in `run'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/strategy_syntax_method_registrar.rb:28:in `block in define_singular_strategy_method'
+      # ./spec/system/04_favorite_comment_spec.rb:8:in `block (2 levels) in <main>'
+
+  33) [STEP4] いいねとコメントのテスト 自分の投稿詳細画面のテスト[課題4追加分] コメント削除機能のテスト リダイレクト先で削除したコメントは表示されない
+      Failure/Error: let!(:user_book_comment) { create(:book_comment, book: book, user: user) }
+
+      NoMethodError:
+        undefined method `book=' for #<BookComment id: nil, comment: "d0ns4ruwl9", user_id: nil, book_id: nil, created_at: nil, updated_at: nil>
+        Did you mean?  book_id=
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/attribute_assigner.rb:16:in `public_send'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/attribute_assigner.rb:16:in `block (2 levels) in object'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/attribute_assigner.rb:15:in `each'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/attribute_assigner.rb:15:in `block in object'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/attribute_assigner.rb:14:in `object'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/evaluation.rb:13:in `object'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/strategy/create.rb:9:in `result'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/factory.rb:43:in `run'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/factory_runner.rb:29:in `block in run'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/factory_runner.rb:28:in `run'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/strategy_syntax_method_registrar.rb:28:in `block in define_singular_strategy_method'
+      # ./spec/system/04_favorite_comment_spec.rb:8:in `block (2 levels) in <main>'
+
+  34) [STEP4] いいねとコメントのテスト 自分のユーザ詳細画面のテスト[課題4追加分] 表示の確認 いいねボタンのハートアイコンが表示される
+      Failure/Error: let!(:user_book_comment) { create(:book_comment, book: book, user: user) }
+
+      NoMethodError:
+        undefined method `book=' for #<BookComment id: nil, comment: "wpem4klmmu", user_id: nil, book_id: nil, created_at: nil, updated_at: nil>
+        Did you mean?  book_id=
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/attribute_assigner.rb:16:in `public_send'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/attribute_assigner.rb:16:in `block (2 levels) in object'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/attribute_assigner.rb:15:in `each'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/attribute_assigner.rb:15:in `block in object'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/attribute_assigner.rb:14:in `object'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/evaluation.rb:13:in `object'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/strategy/create.rb:9:in `result'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/factory.rb:43:in `run'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/factory_runner.rb:29:in `block in run'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/factory_runner.rb:28:in `run'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/strategy_syntax_method_registrar.rb:28:in `block in define_singular_strategy_method'
+      # ./spec/system/04_favorite_comment_spec.rb:8:in `block (2 levels) in <main>'
+
+  35) [STEP4] いいねとコメントのテスト 自分のユーザ詳細画面のテスト[課題4追加分] 表示の確認 いいねボタンが表示される
+      Failure/Error: let!(:user_book_comment) { create(:book_comment, book: book, user: user) }
+
+      NoMethodError:
+        undefined method `book=' for #<BookComment id: nil, comment: "56cry4bbr9", user_id: nil, book_id: nil, created_at: nil, updated_at: nil>
+        Did you mean?  book_id=
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/attribute_assigner.rb:16:in `public_send'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/attribute_assigner.rb:16:in `block (2 levels) in object'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/attribute_assigner.rb:15:in `each'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/attribute_assigner.rb:15:in `block in object'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/attribute_assigner.rb:14:in `object'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/evaluation.rb:13:in `object'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/strategy/create.rb:9:in `result'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/factory.rb:43:in `run'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/factory_runner.rb:29:in `block in run'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/factory_runner.rb:28:in `run'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/strategy_syntax_method_registrar.rb:28:in `block in define_singular_strategy_method'
+      # ./spec/system/04_favorite_comment_spec.rb:8:in `block (2 levels) in <main>'
+
+  36) [STEP4] いいねとコメントのテスト 自分のユーザ詳細画面のテスト[課題4追加分] 表示の確認 コメント数が表示される
+      Failure/Error: let!(:user_book_comment) { create(:book_comment, book: book, user: user) }
+
+      NoMethodError:
+        undefined method `book=' for #<BookComment id: nil, comment: "jnzaifnbgi", user_id: nil, book_id: nil, created_at: nil, updated_at: nil>
+        Did you mean?  book_id=
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/attribute_assigner.rb:16:in `public_send'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/attribute_assigner.rb:16:in `block (2 levels) in object'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/attribute_assigner.rb:15:in `each'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/attribute_assigner.rb:15:in `block in object'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/attribute_assigner.rb:14:in `object'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/evaluation.rb:13:in `object'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/strategy/create.rb:9:in `result'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/factory.rb:43:in `run'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/factory_runner.rb:29:in `block in run'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/factory_runner.rb:28:in `run'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/strategy_syntax_method_registrar.rb:28:in `block in define_singular_strategy_method'
+      # ./spec/system/04_favorite_comment_spec.rb:8:in `block (2 levels) in <main>'
+
+  37) [STEP4] いいねとコメントのテスト 自分のユーザ詳細画面のテスト[課題4追加分] いいね作成機能のテスト 自分のいいねが正しく保存される
+      Failure/Error: let!(:user_book_comment) { create(:book_comment, book: book, user: user) }
+
+      NoMethodError:
+        undefined method `book=' for #<BookComment id: nil, comment: "3r6xuawz7a", user_id: nil, book_id: nil, created_at: nil, updated_at: nil>
+        Did you mean?  book_id=
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/attribute_assigner.rb:16:in `public_send'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/attribute_assigner.rb:16:in `block (2 levels) in object'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/attribute_assigner.rb:15:in `each'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/attribute_assigner.rb:15:in `block in object'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/attribute_assigner.rb:14:in `object'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/evaluation.rb:13:in `object'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/strategy/create.rb:9:in `result'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/factory.rb:43:in `run'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/factory_runner.rb:29:in `block in run'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/factory_runner.rb:28:in `run'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/strategy_syntax_method_registrar.rb:28:in `block in define_singular_strategy_method'
+      # ./spec/system/04_favorite_comment_spec.rb:8:in `block (2 levels) in <main>'
+
+  38) [STEP4] いいねとコメントのテスト 自分のユーザ詳細画面のテスト[課題4追加分] いいね作成機能のテスト リダイレクト先が自分のユーザ詳細画面になっている
+      Failure/Error: let!(:user_book_comment) { create(:book_comment, book: book, user: user) }
+
+      NoMethodError:
+        undefined method `book=' for #<BookComment id: nil, comment: "6n33c9zuhf", user_id: nil, book_id: nil, created_at: nil, updated_at: nil>
+        Did you mean?  book_id=
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/attribute_assigner.rb:16:in `public_send'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/attribute_assigner.rb:16:in `block (2 levels) in object'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/attribute_assigner.rb:15:in `each'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/attribute_assigner.rb:15:in `block in object'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/attribute_assigner.rb:14:in `object'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/evaluation.rb:13:in `object'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/strategy/create.rb:9:in `result'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/factory.rb:43:in `run'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/factory_runner.rb:29:in `block in run'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/factory_runner.rb:28:in `run'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/strategy_syntax_method_registrar.rb:28:in `block in define_singular_strategy_method'
+      # ./spec/system/04_favorite_comment_spec.rb:8:in `block (2 levels) in <main>'
+
+  39) [STEP4] いいねとコメントのテスト 自分のユーザ詳細画面のテスト[課題4追加分] いいね作成機能のテスト リダイレクト先でいいね数が正しく更新されている
+      Failure/Error: let!(:user_book_comment) { create(:book_comment, book: book, user: user) }
+
+      NoMethodError:
+        undefined method `book=' for #<BookComment id: nil, comment: "ftsv91w1kh", user_id: nil, book_id: nil, created_at: nil, updated_at: nil>
+        Did you mean?  book_id=
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/attribute_assigner.rb:16:in `public_send'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/attribute_assigner.rb:16:in `block (2 levels) in object'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/attribute_assigner.rb:15:in `each'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/attribute_assigner.rb:15:in `block in object'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/attribute_assigner.rb:14:in `object'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/evaluation.rb:13:in `object'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/strategy/create.rb:9:in `result'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/factory.rb:43:in `run'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/factory_runner.rb:29:in `block in run'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/factory_runner.rb:28:in `run'
+      # /home/ec2-user/.rvm/gems/ruby-3.1.2/gems/factory_bot-6.2.1/lib/factory_bot/strategy_syntax_method_registrar.rb:28:in `block in define_singular_strategy_method'
+      # ./spec/system/04_favorite_comment_spec.rb:8:in `block (2 levels) in <main>'
+
+Finished in 17.28 seconds (files took 1.04 seconds to load)
+239 examples, 39 failures
+
+Failed examples:
+
+rspec ./spec/models/book_comment_spec.rb:12 # BookCommentモデルのテスト バリデーションのテスト commentカラム 空欄でないこと
+rspec ./spec/models/book_comment_spec.rb:21 # BookCommentモデルのテスト アソシエーションのテスト Bookモデルとの関係 N:1となっている
+rspec ./spec/models/favorite_spec.rb:12 # Favoriteモデルのテスト バリデーションのテスト ユーザーは一つの投稿に一つしかいいねできない
+rspec ./spec/system/04_favorite_comment_spec.rb:24 # [STEP4] いいねとコメントのテスト 投稿一覧画面のテスト[課題4追加分] 表示の確認 いいねボタンのハートアイコンが表示される
+rspec ./spec/system/04_favorite_comment_spec.rb:27 # [STEP4] いいねとコメントのテスト 投稿一覧画面のテスト[課題4追加分] 表示の確認 いいねボタンが表示される
+rspec ./spec/system/04_favorite_comment_spec.rb:31 # [STEP4] いいねとコメントのテスト 投稿一覧画面のテスト[課題4追加分] 表示の確認 コメント数が表示される
+rspec ./spec/system/04_favorite_comment_spec.rb:37 # [STEP4] いいねとコメントのテスト 投稿一覧画面のテスト[課題4追加分] いいね作成機能のテスト 自分のいいねが正しく保存される
+rspec ./spec/system/04_favorite_comment_spec.rb:40 # [STEP4] いいねとコメントのテスト 投稿一覧画面のテスト[課題4追加分] いいね作成機能のテスト リダイレクト先が投稿一覧画面になっている
+rspec ./spec/system/04_favorite_comment_spec.rb:44 # [STEP4] いいねとコメントのテスト 投稿一覧画面のテスト[課題4追加分] いいね作成機能のテスト リダイレクト先でいいね数が正しく更新されている
+rspec ./spec/system/04_favorite_comment_spec.rb:50 # [STEP4] いいねとコメントのテスト 投稿一覧画面のテスト[課題4追加分] いいね削除機能のテスト 自分のいいねが正しく削除される
+rspec ./spec/system/04_favorite_comment_spec.rb:53 # [STEP4] いいねとコメントのテスト 投稿一覧画面のテスト[課題4追加分] いいね削除機能のテスト リダイレクト先が投稿一覧画面になっている
+rspec ./spec/system/04_favorite_comment_spec.rb:57 # [STEP4] いいねとコメントのテスト 投稿一覧画面のテスト[課題4追加分] いいね削除機能のテスト リダイレクト先でいいね数が正しく更新されている
+rspec ./spec/system/04_favorite_comment_spec.rb:69 # [STEP4] いいねとコメントのテスト 自分の投稿詳細画面のテスト[課題4追加分] 表示の確認 いいねボタンのハートアイコンが表示される
+rspec ./spec/system/04_favorite_comment_spec.rb:72 # [STEP4] いいねとコメントのテスト 自分の投稿詳細画面のテスト[課題4追加分] 表示の確認 いいねボタンが表示される
+rspec ./spec/system/04_favorite_comment_spec.rb:75 # [STEP4] いいねとコメントのテスト 自分の投稿詳細画面のテスト[課題4追加分] 表示の確認 コメント数が表示される
+rspec ./spec/system/04_favorite_comment_spec.rb:78 # [STEP4] いいねとコメントのテスト 自分の投稿詳細画面のテスト[課題4追加分] 表示の確認 コメント一覧でコメント投稿者の画像が表示される: fallbackの画像がサイドバーの1つ＋Book detail直下の1つ＋コメント一覧(2人)の2つの計4つ存在する
+rspec ./spec/system/04_favorite_comment_spec.rb:81 # [STEP4] いいねとコメントのテスト 自分の投稿詳細画面のテスト[課題4追加分] 表示の確認 コメント一覧でコメント投稿者の名前が表示される
+rspec ./spec/system/04_favorite_comment_spec.rb:85 # [STEP4] いいねとコメントのテスト 自分の投稿詳細画面のテスト[課題4追加分] 表示の確認 コメント一覧でコメントの内容が表示される
+rspec ./spec/system/04_favorite_comment_spec.rb:89 # [STEP4] いいねとコメントのテスト 自分の投稿詳細画面のテスト[課題4追加分] 表示の確認 自分が投稿したコメントの削除ボタンが表示される
+rspec ./spec/system/04_favorite_comment_spec.rb:92 # [STEP4] いいねとコメントのテスト 自分の投稿詳細画面のテスト[課題4追加分] 表示の確認 他人が投稿したコメントの削除ボタンは表示されない
+rspec ./spec/system/04_favorite_comment_spec.rb:95 # [STEP4] いいねとコメントのテスト 自分の投稿詳細画面のテスト[課題4追加分] 表示の確認 コメント投稿フォームが表示される
+rspec ./spec/system/04_favorite_comment_spec.rb:98 # [STEP4] いいねとコメントのテスト 自分の投稿詳細画面のテスト[課題4追加分] 表示の確認 送信ボタンが表示される
+rspec ./spec/system/04_favorite_comment_spec.rb:103 # [STEP4] いいねとコメントのテスト 自分の投稿詳細画面のテスト[課題4追加分] いいね機能のテスト 自分のいいねが正しく保存される
+rspec ./spec/system/04_favorite_comment_spec.rb:106 # [STEP4] いいねとコメントのテスト 自分の投稿詳細画面のテスト[課題4追加分] いいね機能のテスト リダイレクト先が、いいねをした投稿詳細画面になっている
+rspec ./spec/system/04_favorite_comment_spec.rb:110 # [STEP4] いいねとコメントのテスト 自分の投稿詳細画面のテスト[課題4追加分] いいね機能のテスト リダイレクト先でいいね数が正しく更新されている
+rspec ./spec/system/04_favorite_comment_spec.rb:120 # [STEP4] いいねとコメントのテスト 自分の投稿詳細画面のテスト[課題4追加分] コメント追加機能のテスト 自分のコメントが正しく保存される
+rspec ./spec/system/04_favorite_comment_spec.rb:123 # [STEP4] いいねとコメントのテスト 自分の投稿詳細画面のテスト[課題4追加分] コメント追加機能のテスト リダイレクト先が、コメントをした投稿詳細画面になっている
+rspec ./spec/system/04_favorite_comment_spec.rb:127 # [STEP4] いいねとコメントのテスト 自分の投稿詳細画面のテスト[課題4追加分] コメント追加機能のテスト リダイレクト先でコメント数が正しく更新されている
+rspec ./spec/system/04_favorite_comment_spec.rb:131 # [STEP4] いいねとコメントのテスト 自分の投稿詳細画面のテスト[課題4追加分] コメント追加機能のテスト リダイレクト先で新しいコメントが表示されている
+rspec ./spec/system/04_favorite_comment_spec.rb:142 # [STEP4] いいねとコメントのテスト 自分の投稿詳細画面のテスト[課題4追加分] コメント削除機能のテスト 自分のコメントが正しく削除される
+rspec ./spec/system/04_favorite_comment_spec.rb:145 # [STEP4] いいねとコメントのテスト 自分の投稿詳細画面のテスト[課題4追加分] コメント削除機能のテスト リダイレクト先が、コメントをしていた投稿詳細画面になっている
+rspec ./spec/system/04_favorite_comment_spec.rb:149 # [STEP4] いいねとコメントのテスト 自分の投稿詳細画面のテスト[課題4追加分] コメント削除機能のテスト リダイレクト先でコメント数が正しく更新されている
+rspec ./spec/system/04_favorite_comment_spec.rb:153 # [STEP4] いいねとコメントのテスト 自分の投稿詳細画面のテスト[課題4追加分] コメント削除機能のテスト リダイレクト先で削除したコメントは表示されない
+rspec ./spec/system/04_favorite_comment_spec.rb:165 # [STEP4] いいねとコメントのテスト 自分のユーザ詳細画面のテスト[課題4追加分] 表示の確認 いいねボタンのハートアイコンが表示される
+rspec ./spec/system/04_favorite_comment_spec.rb:168 # [STEP4] いいねとコメントのテスト 自分のユーザ詳細画面のテスト[課題4追加分] 表示の確認 いいねボタンが表示される
+rspec ./spec/system/04_favorite_comment_spec.rb:171 # [STEP4] いいねとコメントのテスト 自分のユーザ詳細画面のテスト[課題4追加分] 表示の確認 コメント数が表示される
+rspec ./spec/system/04_favorite_comment_spec.rb:176 # [STEP4] いいねとコメントのテスト 自分のユーザ詳細画面のテスト[課題4追加分] いいね作成機能のテスト 自分のいいねが正しく保存される
+rspec ./spec/system/04_favorite_comment_spec.rb:179 # [STEP4] いいねとコメントのテスト 自分のユーザ詳細画面のテスト[課題4追加分] いいね作成機能のテスト リダイレクト先が自分のユーザ詳細画面になっている
+rspec ./spec/system/04_favorite_comment_spec.rb:183 # [STEP4] いいねとコメントのテスト 自分のユーザ詳細画面のテスト[課題4追加分] いいね作成機能のテスト リダイレクト先でいいね数が正しく更新されている
 
