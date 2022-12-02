@@ -10,6 +10,6 @@ class Book < ApplicationRecord
   def favorited_by?(user)
     favorites.exists?(user: user.id)
   end
-  
+
   
 end
