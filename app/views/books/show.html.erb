@@ -47,10 +47,13 @@
         <tbody>
           <% @book.book_comments.each do |book_comment| %>
           <tr>
-            <td><%=image_tag @user.get_profile_image(100,100) %></td>
+            <td>
+              <%=image_tag book_comment.user.get_profile_image(100,100) %><br>
+              <%= book_comment.user.name %>
+            </td>
             <td><%= book_comment.comment %></td>
             <% if book_comment.user == current_user %>
-            <td> <%= link_to "destroy", book_book_comment_path(book_comment.book_id, book_comment), method: :delete %></td>
+            <td> <%= link_to "Destroy", book_book_comment_path(book_comment.book_id, book_comment), method: :delete %></td>
             <% end %>
           </tr>
           <% end %>
